@@ -764,9 +764,17 @@ const (
 )
 
 // AnythingOfTypeArgument contains the type of an argument
-// for use when type checking.  Used in Diff and Assert.
+// for use when type checking.  Used in [Arguments.Diff] and [Arguments.Assert].
 //
-// Deprecated: this is an implementation detail that must not be used. Use [AnythingOfType] instead.
+// Deprecated: this is an implementation detail that must not be used. Use the [AnythingOfType] constructor instead, example:
+//
+//	m.On("Do", mock.AnythingOfType("string"))
+//
+// All explicit type declarations can be replaced with interface{} as is expected by [Mock.On], example:
+//
+//	func anyString interface{} {
+//		return mock.AnythingOfType("string")
+//	}
 type AnythingOfTypeArgument = anythingOfTypeArgument
 
 // anythingOfTypeArgument is a string that contains the type of an argument
@@ -780,24 +788,25 @@ type anythingOfTypeArgument string
 //
 // For example:
 //
-//	Assert(t, AnythingOfType("string"), AnythingOfType("int"))
+//	args.Assert(t, AnythingOfType("string"), AnythingOfType("int"))
 func AnythingOfType(t string) AnythingOfTypeArgument {
 	return anythingOfTypeArgument(t)
 }
 
 // IsTypeArgument is a struct that contains the type of an argument
-// for use when type checking.  This is an alternative to AnythingOfType.
-// Used in Diff and Assert.
+// for use when type checking.  This is an alternative to [AnythingOfType].
+// Used in [Arguments.Diff] and [Arguments.Assert].
 type IsTypeArgument struct {
 	t reflect.Type
 }
 
 // IsType returns an IsTypeArgument object containing the type to check for.
 // You can provide a zero-value of the type to check.  This is an
-// alternative to AnythingOfType.  Used in Diff and Assert.
+// alternative to [AnythingOfType].  Used in [Arguments.Diff] and [Arguments.Assert].
 //
 // For example:
-// Assert(t, IsType(""), IsType(0))
+//
+//	args.Assert(t, IsType(""), IsType(0))
 func IsType(t interface{}) *IsTypeArgument {
 	return &IsTypeArgument{t: reflect.TypeOf(t)}
 }
@@ -819,11 +828,12 @@ func (f *FunctionalOptionsArgument) String() string {
 	return strings.Replace(fmt.Sprintf("%#v", f.value), "[]interface {}", name, 1)
 }
 
-// FunctionalOptions returns an FunctionalOptionsArgument object containing the functional option type
-// and the values to check of
+// FunctionalOptions returns an [FunctionalOptionsArgument] object containing
+// the expected functional-options to check for.
 //
 // For example:
-// Assert(t, FunctionalOptions("[]foo.FunctionalOption", foo.Opt1(), foo.Opt2()))
+//
+//	Assert(t, FunctionalOptions(foo.Opt1("strValue"), foo.Opt2(613)))
 func FunctionalOptions(value ...interface{}) *FunctionalOptionsArgument {
 	return &FunctionalOptionsArgument{
 		value: value,
@@ -873,10 +883,11 @@ func (f argumentMatcher) String() string {
 // and false otherwise.
 //
 // Example:
-// m.On("Do", MatchedBy(func(req *http.Request) bool { return req.Host == "example.com" }))
 //
-// |fn|, must be a function accepting a single argument (of the expected type)
-// which returns a bool. If |fn| doesn't match the required signature,
+//	m.On("Do", MatchedBy(func(req *http.Request) bool { return req.Host == "example.com" }))
+//
+// fn must be a function accepting a single argument (of the expected type)
+// which returns a bool. If fn doesn't match the required signature,
 // MatchedBy() panics.
 func MatchedBy(fn interface{}) argumentMatcher {
 	fnType := reflect.TypeOf(fn)
@@ -1092,7 +1103,7 @@ func (args Arguments) Error(index int) error {
 		return nil
 	}
 	if s, ok = obj.(error); !ok {
-		panic(fmt.Sprintf("assert: arguments: Error(%d) failed because object wasn't correct type: %v", index, args.Get(index)))
+		panic(fmt.Sprintf("assert: arguments: Error(%d) failed because object wasn't correct type: %v", index, obj))
 	}
 	return s
 }
