@@ -6,7 +6,7 @@
 //
 //	import (
 //	  "testing"
-//	  "github.com/stretchr/testify/assert"
+//	  "github.com/stretchr/testify/lite/assert"
 //	)
 //
 //	func TestSomething(t *testing.T) {
@@ -22,7 +22,7 @@
 //
 //	import (
 //	  "testing"
-//	  "github.com/stretchr/testify/assert"
+//	  "github.com/stretchr/testify/lite/assert"
 //	)
 //
 //	func TestSomething(t *testing.T) {

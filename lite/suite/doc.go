@@ -33,8 +33,8 @@
 //	// Basic imports
 //	import (
 //	    "testing"
-//	    "github.com/stretchr/testify/assert"
-//	    "github.com/stretchr/testify/suite"
+//	    "github.com/stretchr/testify/lite/assert"
+//	    "github.com/stretchr/testify/lite/suite"
 //	)
 //
 //	// Define the suite, and absorb the built-in basic suite

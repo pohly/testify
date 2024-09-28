@@ -12,8 +12,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/stretchr/testify/assert"
-	"github.com/stretchr/testify/require"
+	"github.com/stretchr/testify/lite/assert"
+	"github.com/stretchr/testify/lite/require"
 )
 
 // SuiteRequireTwice is intended to test the usage of suite.Require in two

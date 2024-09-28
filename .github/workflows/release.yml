@@ -4,7 +4,7 @@ name: Create release from new tag
 on:
   push:
     tags:
-      - "v[0-9]+.[0-9]+.[0-9]+"
+      - "lite/v[0-9]+.[0-9]+.[0-9]+"
 
 jobs:
   build:

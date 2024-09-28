@@ -165,7 +165,7 @@ func TestGreater(t *testing.T) {
 		out := &outputT{buf: bytes.NewBuffer(nil)}
 		False(t, Greater(out, currCase.less, currCase.greater))
 		Contains(t, out.buf.String(), currCase.msg)
-		Contains(t, out.helpers, "github.com/stretchr/testify/assert.Greater")
+		Contains(t, out.helpers, "github.com/stretchr/testify/lite/assert.Greater")
 	}
 }
 
@@ -209,7 +209,7 @@ func TestGreaterOrEqual(t *testing.T) {
 		out := &outputT{buf: bytes.NewBuffer(nil)}
 		False(t, GreaterOrEqual(out, currCase.less, currCase.greater))
 		Contains(t, out.buf.String(), currCase.msg)
-		Contains(t, out.helpers, "github.com/stretchr/testify/assert.GreaterOrEqual")
+		Contains(t, out.helpers, "github.com/stretchr/testify/lite/assert.GreaterOrEqual")
 	}
 }
 
@@ -253,7 +253,7 @@ func TestLess(t *testing.T) {
 		out := &outputT{buf: bytes.NewBuffer(nil)}
 		False(t, Less(out, currCase.greater, currCase.less))
 		Contains(t, out.buf.String(), currCase.msg)
-		Contains(t, out.helpers, "github.com/stretchr/testify/assert.Less")
+		Contains(t, out.helpers, "github.com/stretchr/testify/lite/assert.Less")
 	}
 }
 
@@ -297,7 +297,7 @@ func TestLessOrEqual(t *testing.T) {
 		out := &outputT{buf: bytes.NewBuffer(nil)}
 		False(t, LessOrEqual(out, currCase.greater, currCase.less))
 		Contains(t, out.buf.String(), currCase.msg)
-		Contains(t, out.helpers, "github.com/stretchr/testify/assert.LessOrEqual")
+		Contains(t, out.helpers, "github.com/stretchr/testify/lite/assert.LessOrEqual")
 	}
 }
 
@@ -336,7 +336,7 @@ func TestPositive(t *testing.T) {
 		out := &outputT{buf: bytes.NewBuffer(nil)}
 		False(t, Positive(out, currCase.e))
 		Contains(t, out.buf.String(), currCase.msg)
-		Contains(t, out.helpers, "github.com/stretchr/testify/assert.Positive")
+		Contains(t, out.helpers, "github.com/stretchr/testify/lite/assert.Positive")
 	}
 }
 
@@ -375,7 +375,7 @@ func TestNegative(t *testing.T) {
 		out := &outputT{buf: bytes.NewBuffer(nil)}
 		False(t, Negative(out, currCase.e))
 		Contains(t, out.buf.String(), currCase.msg)
-		Contains(t, out.helpers, "github.com/stretchr/testify/assert.Negative")
+		Contains(t, out.helpers, "github.com/stretchr/testify/lite/assert.Negative")
 	}
 }
 

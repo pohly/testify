@@ -1,4 +1,4 @@
-module github.com/stretchr/testify/_codegen
+module github.com/stretchr/testify/lite/_codegen
 
 go 1.11
 
