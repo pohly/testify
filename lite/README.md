@@ -13,7 +13,10 @@ Features include:
   * [Mocking](#mock-package)
   * [Testing suite interfaces and functions](#suite-package)
 
-Testify Lite is meant to become a reduced version of the corresponding normal Testify.
+Testify Lite is a reduced version of the corresponding normal Testify. What was removed:
+
+  * YAMLEq and therefore the dependency on gopkg.in/yaml.v3.
+  * The deprecated http package.
 
 Get started:
 
